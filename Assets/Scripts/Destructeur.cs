@@ -1,11 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Détruit un objet qui entre dans sa zone
+/// </summary>
 public class Destructeur : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(other.gameObject);
+        // N'interragit pas avec les objets du layer immuable
+        if(other.gameObject.layer != LayerMask.NameToLayer("Immuable"))
+        {
+            Destroy(other.gameObject);
+            CompteurObjets.Instance.AjouterDetruits();
+        }
     }
 }

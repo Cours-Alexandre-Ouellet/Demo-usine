@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Gère un convoyeur d'objets
+/// </summary>
 public class Convoyeur : MonoBehaviour
 {
-    [SerializeField]
+    [SerializeField, Tooltip("Vitesse à laquelle l'objet est transporté.")]
     private float vitesse = 2.0f;
 
-    [SerializeField]
+    [SerializeField, Tooltip("Direction dans laquelle l'objet est envoyé.")]
     private Vector3 direction;
 
     private void Awake()
