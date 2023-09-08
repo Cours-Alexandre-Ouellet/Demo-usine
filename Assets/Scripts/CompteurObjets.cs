@@ -26,6 +26,9 @@ public class CompteurObjets : MonoBehaviour
     [SerializeField, Tooltip("Référence à l'objet qui affiche le nombre de détruits.")]
     private FormatteurTexte compteurDetruits;
 
+    [SerializeField, Tooltip("Référence à l'objet qui affiche le nombre de créés et de détruits.")]
+    private FormatteurTexteComplet afficheurComplet;
+
     private void Awake()
     {
 
@@ -46,6 +49,7 @@ public class CompteurObjets : MonoBehaviour
     {
         compteurCrees.ChangerValeur(nombreCrees);
         compteurDetruits.ChangerValeur(nombreDetruits);
+        afficheurComplet.FormatterValeurs(nombreCrees, nombreDetruits);
     }
 
     /// <summary>
@@ -56,6 +60,7 @@ public class CompteurObjets : MonoBehaviour
     {
         this.nombreCrees += nombreCrees;
         compteurCrees.ChangerValeur(this.nombreCrees);
+        afficheurComplet.FormatterValeurs(this.nombreCrees, nombreDetruits);
     }
 
     /// <summary>
@@ -66,5 +71,6 @@ public class CompteurObjets : MonoBehaviour
     {
         this.nombreDetruits += nombreDetruits;
         compteurDetruits.ChangerValeur(this.nombreDetruits);
+        afficheurComplet.FormatterValeurs(nombreCrees, this.nombreDetruits);
     }
 }
