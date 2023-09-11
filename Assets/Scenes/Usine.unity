@@ -786,7 +786,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4953379372b8094aad1289d1180795a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  compteurDetruits: {fileID: 1483484337}
   afficheurComplet: {fileID: 242129084}
 --- !u!4 &832239477
 Transform:
@@ -1309,7 +1308,7 @@ GameObject:
   - component: {fileID: 1483484336}
   - component: {fileID: 1483484339}
   - component: {fileID: 1483484338}
-  - component: {fileID: 1483484337}
+  - component: {fileID: 1483484340}
   m_Layer: 5
   m_Name: CompteurDetruits
   m_TagString: Untagged
@@ -1336,19 +1335,6 @@ RectTransform:
   m_AnchoredPosition: {x: 20, y: -17}
   m_SizeDelta: {x: 450, y: 40}
   m_Pivot: {x: 0, y: 0.5}
---- !u!114 &1483484337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1483484335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa0efdd8443b9074787dd944fb35f1c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  conteneurEntier: {fileID: 0}
 --- !u!114 &1483484338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1369,7 +1355,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Nombre de boites d\xE9truites ##"
+  m_text: "Nombre de boites d\xE9truites {2}"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1446,6 +1432,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1483484335}
   m_CullTransparentMesh: 1
+--- !u!114 &1483484340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483484335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b47ddfcd356404f4281b87734759389b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conteneurValeurs: {fileID: 832239476}
 --- !u!1 &1486809326
 GameObject:
   m_ObjectHideFlags: 0
