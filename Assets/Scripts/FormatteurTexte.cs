@@ -12,11 +12,18 @@ public class FormatteurTexte : MonoBehaviour
     /// </summary>
     private string modeleTexte;
 
-    
+    [SerializeField]
+    private ChangementEntier compteur;
+
     void Awake()
     {
         // Récupère le modèle de texte du composant
         modeleTexte = GetComponent<TextMeshProUGUI>().text;
+    }
+
+    private void Start()
+    {
+        compteur.OnChangementEntier += ChangerValeur;
     }
 
     /// <summary>
