@@ -14,9 +14,17 @@ public class FormatteurTexteComplet : MonoBehaviour
     /// </summary>
     private string modeleTexte;
 
+    [SerializeField]
+    private ChangeurValeur conteneurValeurs;
+
     private void Awake()
     {
         modeleTexte = GetComponent<TextMeshProUGUI>().text;
+    }
+
+    private void Start()
+    {
+        conteneurValeurs.OnChangementValeur += FormatterValeurs;
     }
 
     /// <summary>
@@ -46,12 +54,8 @@ public class FormatteurTexteComplet : MonoBehaviour
     private bool Substituer(object valeur, int indice, ref string chaine)
     {
         string valeurChaine = valeur.ToString();
-        if(chaine.Contains($"{{{indice}}}"))
-        {
-            chaine = chaine.Replace($"{{{indice}}}", valeurChaine);
-            return true;
-        }
-
-        return false;
+ 
+        chaine = chaine.Replace($"{{{indice}}}", valeurChaine);
+        return true;
     }
 }

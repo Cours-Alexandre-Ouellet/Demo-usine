@@ -4,7 +4,7 @@ using System;
 /// <summary>
 /// Compte les objets présentant dans le jeu
 /// </summary>
-public class CompteurObjets : ChangementEntier
+public class CompteurObjets : ChangeurValeur
 {
     /// <summary>
     /// Instance unique pour le pseudo-singleton
@@ -21,17 +21,13 @@ public class CompteurObjets : ChangementEntier
     /// </summary>
     private int nombreDetruits;
 
-    [SerializeField, Tooltip("Référence à l'objet qui affiche le nombre de détruits.")]
-    private FormatteurTexte compteurDetruits;
-
     [SerializeField, Tooltip("Référence à l'objet qui affiche le nombre de créés et de détruits.")]
     private FormatteurTexteComplet afficheurComplet;
 
-    public override event Action<int> OnChangementEntier;
+    public override event Action<object[]> OnChangementValeur;
 
     private void Awake()
     {
-
         if(Instance == null)
         {
             Instance = this;
@@ -47,11 +43,8 @@ public class CompteurObjets : ChangementEntier
 
     private void Start()
     {
+        Notifier();
 
-        OnChangementEntier?.Invoke(nombreCrees);
-
-        
-        
         //compteurDetruits.ChangerValeur(nombreDetruits);       
         afficheurComplet.FormatterValeurs(nombreCrees, nombreDetruits);
     }
@@ -63,9 +56,8 @@ public class CompteurObjets : ChangementEntier
     public void AjouterCrees(int nombreCrees = 1)
     {
         this.nombreCrees += nombreCrees;
-        OnChangementEntier?.Invoke(this.nombreCrees);
-        
-        
+        Notifier();
+
         afficheurComplet.FormatterValeurs(this.nombreCrees, nombreDetruits);
     }
 
@@ -76,9 +68,14 @@ public class CompteurObjets : ChangementEntier
     public void AjouterDetruits(int nombreDetruits = 1)
     {
         this.nombreDetruits += nombreDetruits;
-        //compteurDetruits.ChangerValeur(this.nombreDetruits);
-       
-        
+        Notifier();
+
+
         afficheurComplet.FormatterValeurs(nombreCrees, this.nombreDetruits);
+    }
+
+    private void Notifier()
+    {
+        OnChangementValeur?.Invoke(new object[] { nombreCrees, nombreDetruits });
     }
 }

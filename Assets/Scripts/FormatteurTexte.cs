@@ -13,7 +13,7 @@ public class FormatteurTexte : MonoBehaviour
     private string modeleTexte;
 
     [SerializeField]
-    private ChangementEntier compteur;
+    private ChangeurValeur conteneurEntier;
 
     void Awake()
     {
@@ -23,7 +23,7 @@ public class FormatteurTexte : MonoBehaviour
 
     private void Start()
     {
-        compteur.OnChangementEntier += ChangerValeur;
+        //conteneurEntier.OnChangementValeur += ChangerValeur;
     }
 
     /// <summary>
