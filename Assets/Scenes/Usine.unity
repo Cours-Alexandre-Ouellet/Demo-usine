@@ -365,8 +365,9 @@ GameObject:
   - component: {fileID: 242129081}
   - component: {fileID: 242129083}
   - component: {fileID: 242129082}
+  - component: {fileID: 242129084}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: CompteurComplet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -488,6 +489,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 242129080}
   m_CullTransparentMesh: 1
+--- !u!114 &242129084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242129080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b47ddfcd356404f4281b87734759389b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,6 +787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   compteurCrees: {fileID: 1430771752}
   compteurDetruits: {fileID: 1483484337}
+  afficheurComplet: {fileID: 242129084}
 --- !u!4 &832239477
 Transform:
   m_ObjectHideFlags: 0
