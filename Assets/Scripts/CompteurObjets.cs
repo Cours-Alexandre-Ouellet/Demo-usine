@@ -43,8 +43,6 @@ public class CompteurObjets : ChangeurValeur
 
     private void Start()
     {
-        Notifier();
-
         //compteurDetruits.ChangerValeur(nombreDetruits);       
         afficheurComplet.FormatterValeurs(nombreCrees, nombreDetruits);
     }
@@ -76,6 +74,11 @@ public class CompteurObjets : ChangeurValeur
 
     private void Notifier()
     {
-        OnChangementValeur?.Invoke(new object[] { nombreCrees, nombreDetruits });
+        OnChangementValeur?.Invoke(GetValeurs());
+    }
+
+    public override object[] GetValeurs()
+    {
+        return new object[] { nombreCrees, nombreDetruits };
     }
 }

@@ -25,6 +25,7 @@ public class FormatteurTexteComplet : MonoBehaviour
     private void Start()
     {
         conteneurValeurs.OnChangementValeur += FormatterValeurs;
+        FormatterValeurs(conteneurValeurs.GetValeurs());
     }
 
     /// <summary>
