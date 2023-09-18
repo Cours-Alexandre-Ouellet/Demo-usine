@@ -21,11 +21,6 @@ public class CompteurObjets : ChangeurValeur
     /// </summary>
     private int nombreDetruits;
 
-    [SerializeField, Tooltip("Référence à l'objet qui affiche le nombre de créés et de détruits.")]
-    private FormatteurTexteComplet afficheurComplet;
-
-    public override event Action<object[]> OnChangementValeur;
-
     private void Awake()
     {
         if(Instance == null)
@@ -43,8 +38,7 @@ public class CompteurObjets : ChangeurValeur
 
     private void Start()
     {
-        //compteurDetruits.ChangerValeur(nombreDetruits);       
-        afficheurComplet.FormatterValeurs(nombreCrees, nombreDetruits);
+        Notifier();
     }
 
     /// <summary>
@@ -55,8 +49,6 @@ public class CompteurObjets : ChangeurValeur
     {
         this.nombreCrees += nombreCrees;
         Notifier();
-
-        afficheurComplet.FormatterValeurs(this.nombreCrees, nombreDetruits);
     }
 
     /// <summary>
@@ -67,9 +59,6 @@ public class CompteurObjets : ChangeurValeur
     {
         this.nombreDetruits += nombreDetruits;
         Notifier();
-
-
-        afficheurComplet.FormatterValeurs(nombreCrees, this.nombreDetruits);
     }
 
     private void Notifier()

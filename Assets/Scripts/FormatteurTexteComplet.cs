@@ -14,18 +14,9 @@ public class FormatteurTexteComplet : MonoBehaviour
     /// </summary>
     private string modeleTexte;
 
-    [SerializeField]
-    private ChangeurValeur conteneurValeurs;
-
     private void Awake()
     {
         modeleTexte = GetComponent<TextMeshProUGUI>().text;
-    }
-
-    private void Start()
-    {
-        conteneurValeurs.OnChangementValeur += FormatterValeurs;
-        FormatterValeurs(conteneurValeurs.GetValeurs());
     }
 
     /// <summary>
