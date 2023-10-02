@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
 
 /// <summary>
 /// Gère un convoyeur d'objets
@@ -43,6 +45,28 @@ public class Convoyeur : MonoBehaviour
     /// </summary>
     private Etat etatPrecedent;
 
+    /// <summary>
+    /// Indique que la réparation du convoyeur est complétée
+    /// </summary>
+    public bool ReparationCompletee { get; set; }
+
+    /// <summary>
+    /// Référence sur la coroutine qui effectue la réparation
+    /// </summary>
+    private Coroutine coroutineReparation;
+
+    /// <summary>
+    /// Temps nécessaire pour réparer le convoyeur
+    /// </summary>
+    [SerializeField]
+    private float tempsReparation;
+
+    /// <summary>
+    /// Image pour afficher la progression de la réparation
+    /// </summary>
+    [SerializeField]
+    private Image progressionReparation;
+
     private void Awake()
     {
         direction.Normalize();
@@ -50,6 +74,7 @@ public class Convoyeur : MonoBehaviour
         etatPrecedent = null;
         EstArrete = false;
         EstBrise = false;
+        ReparationCompletee = false;
     }
 
     private void Update()
@@ -98,4 +123,50 @@ public class Convoyeur : MonoBehaviour
         Rigidbody rigidbodyCollision = collision.rigidbody;
         rigidbodyCollision.AddForce(vitesse * direction, ForceMode.Impulse);
     }
+
+    /// <summary>
+    /// Démarre le compteur de réparation
+    /// </summary>
+    public void DemarrerCompteurReparation()
+    {
+        coroutineReparation = StartCoroutine("CompterTempsReparation");
+    }
+
+    /// <summary>
+    /// Interrompt la réparation
+    /// </summary>
+    public void ArreterReparation()
+    {
+        StopCoroutine(coroutineReparation);
+        progressionReparation.gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// Coroutine qui compte le temps passé à réparer le convoyeur et met à jour l'affichage
+    /// du compteur en conséquent
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator CompterTempsReparation()
+    {
+        float tempsEcoule = 0.0f;       // Compteur accumulé par frame
+        progressionReparation.gameObject.SetActive(true);       // Affiche le compteur
+
+        // Exécuter la boucle tant que la réparation n'est pas complétée
+        while(tempsEcoule < tempsReparation)
+        {
+            tempsEcoule += Time.deltaTime;
+            // Remplit l'image (mode filled)
+            progressionReparation.fillAmount = tempsEcoule / tempsReparation;
+            
+            // Instruction indiquant à Unity d'attendre le prochain passage de la boucle de jeu 
+            // avant de continuer l'exécution de la méthode
+            yield return null;
+        }
+
+        // Opérations exécutées après la complétion de la réparation
+        ReparationCompletee = true;
+        progressionReparation.gameObject.SetActive(false);
+    }
+
+    
 }

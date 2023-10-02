@@ -11,11 +11,27 @@ public class Briser : Etat
         base.EntrerEtat(convoyeur, etatPrecedent);
         convoyeur.EstArrete = true;
         convoyeur.EstBrise = true;
+        convoyeur.ReparationCompletee = false;      // Passe à l'état Briser
+                                                    // (après le cours j'ai réalisé que tout pouvait se gérer avec EstBrise...)
+
     }
 
     public override Etat Executer(Convoyeur convoyeur)
     {
-        if(Input.GetKey(KeyCode.R))
+        // On appuie sur R
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            convoyeur.DemarrerCompteurReparation();
+        }
+        
+        // On relâche R
+        if(Input.GetKeyUp(KeyCode.R))
+        {
+            convoyeur.ArreterReparation();
+        }
+
+        // Réparation complété = changement état
+        if(convoyeur.ReparationCompletee)
         {
             return new Avancer();
         }
