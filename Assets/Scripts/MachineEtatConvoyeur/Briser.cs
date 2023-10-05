@@ -42,6 +42,7 @@ public class Briser : Etat
     public override void SortirEtat(Convoyeur convoyeur, Etat etatSuivant)
     {
         base.SortirEtat(convoyeur, etatSuivant);
+        convoyeur.CommencerDelaiGrace();
         convoyeur.EstBrise = false;
     }
 }

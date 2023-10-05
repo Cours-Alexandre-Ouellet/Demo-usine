@@ -168,5 +168,33 @@ public class Convoyeur : MonoBehaviour
         progressionReparation.gameObject.SetActive(false);
     }
 
-    
+    /// <summary>
+    /// Commence le compte du délai de grâce sur le convoyeur.
+    /// </summary>
+    public void CommencerDelaiGrace()
+    {
+        StartCoroutine("CoroutineDelaiGrace");
+    }
+
+    /// <summary>
+    /// Délai pendant lequel le convoyeur ne peut pas briser
+    /// </summary>
+    [SerializeField]
+    private float delaiGrace = 3.0f;
+
+    /// <summary>
+    /// Coroutine qui affecte à 0.0 la probabilité le temps 
+    /// du délai de grâce.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator CoroutineDelaiGrace()
+    {
+        float probabiliteBris = ProbabiliteBris;
+        this.probabiliteBris = 0.0f;
+
+        // Attend ce nombre de secondes dans le jeu (échelle du temps de jeu)
+        yield return new WaitForSeconds(delaiGrace);
+
+        this.probabiliteBris = probabiliteBris;
+    }
 }
