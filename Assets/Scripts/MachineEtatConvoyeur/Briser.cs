@@ -44,5 +44,6 @@ public class Briser : Etat
         base.SortirEtat(convoyeur, etatSuivant);
         convoyeur.CommencerDelaiGrace();
         convoyeur.EstBrise = false;
+        convoyeur.EstArrete=false;
     }
 }

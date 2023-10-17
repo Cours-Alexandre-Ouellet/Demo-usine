@@ -67,6 +67,11 @@ public class Convoyeur : MonoBehaviour
     [SerializeField]
     private Image progressionReparation;
 
+    /// <summary>
+    /// Temps demandé pour fabriquer un objet
+    /// </summary>
+    public float TempsFabrication { get; set; }
+
     private void Awake()
     {
         direction.Normalize();
@@ -97,6 +102,15 @@ public class Convoyeur : MonoBehaviour
     }
 
     /// <summary>
+    /// Demande au convoyeur d'attendre pour un temps de fabrication
+    /// </summary>
+    /// <param name="temps">Le temps de fabrication de l'oibjet</param>
+    public void Attendre(float temps)
+    {
+        TempsFabrication = temps;   
+    }
+
+    /// <summary>
     /// Permet de faire le changement de vitesse entre une vitesse minimale et maximale, selon un pourcentage
     /// donné.
     /// </summary>
@@ -108,14 +122,17 @@ public class Convoyeur : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
+        Debug.Log($"Call collision stay : {EstArrete}");
+
         if(!EstArrete)
         {
             collision.rigidbody.transform.position += vitesse * Time.deltaTime * direction;
         }
         else
         {
-            collision.rigidbody.transform.position += vitesse * 0.0001f * Time.deltaTime * direction;
+            collision.rigidbody.transform.position += 0.0001f * Time.deltaTime * direction;
         }
+ 
     }
 
     private void OnCollisionExit(Collision collision)

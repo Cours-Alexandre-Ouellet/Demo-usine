@@ -22,4 +22,10 @@ public class Attendre : Etat
 
         return this;
     }
+
+    public override void SortirEtat(Convoyeur convoyeur, Etat etatSuivant)
+    {
+        base.SortirEtat(convoyeur, etatSuivant);
+        convoyeur.EstArrete=false;
+    }
 }

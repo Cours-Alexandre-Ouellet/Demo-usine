@@ -19,6 +19,12 @@ public class Avancer : Etat
         {
             return new Briser();
         }
+        if(convoyeur.TempsFabrication > 0.0f)
+        {
+            Fabriquer prochainEtat = new Fabriquer(convoyeur.TempsFabrication);
+            convoyeur.TempsFabrication = 0.0f;
+            return prochainEtat;
+        }
         if(Input.GetKeyDown(KeyCode.K))
         {
             return new Attendre();
