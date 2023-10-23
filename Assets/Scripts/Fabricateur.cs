@@ -35,6 +35,7 @@ public class Fabricateur : MonoBehaviour
         // Lancer l'animation
         Animator controleurAnimation = GetComponent<Animator>();
         controleurAnimation.SetTrigger("ObjetEntre");
+        GetComponent<AudioSource>().Play();
         // Demande au convoyeur d'attendre
         convoyeur.Attendre(2.0f);   
     }
