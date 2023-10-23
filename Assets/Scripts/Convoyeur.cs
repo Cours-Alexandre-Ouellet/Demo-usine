@@ -132,7 +132,6 @@ public class Convoyeur : MonoBehaviour
         {
             collision.rigidbody.transform.position += 0.0001f * Time.deltaTime * direction;
         }
- 
     }
 
     private void OnCollisionExit(Collision collision)
