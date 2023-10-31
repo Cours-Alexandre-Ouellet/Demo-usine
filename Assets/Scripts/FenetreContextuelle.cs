@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class FenetreContextuelle : MonoBehaviour
 {
-    public void Ouvrir()
+    public virtual void Ouvrir()
     {
         GetComponent<Animator>().SetBool("EstOuvert", true);
     }

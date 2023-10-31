@@ -6,8 +6,10 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public class Fabricateur : MonoBehaviour
 {
-    [SerializeField, Tooltip("Le mesh qui remplace le Mesh entrant")]
-    private Mesh formeFabriquee;
+    [SerializeField, Tooltip("Le modèle de l'objet fabriqué")]
+    private ModeleObjet modele;
+
+    public ModeleObjet Modele { get { return modele; } set {  modele = value; } }
 
     [SerializeField, Tooltip("Convoyeur qui traverse ce fabricateur")]
     private Convoyeur convoyeur;
@@ -25,12 +27,12 @@ public class Fabricateur : MonoBehaviour
 
         // Remplacement du Mesh
         MeshFilter meshARemplacer = objetATransformer.GetComponent<MeshFilter>();
-        meshARemplacer.mesh = formeFabriquee;
+        meshARemplacer.mesh = modele.Mesh;
 
         // Changer la taille du collider
         BoxCollider colliderARedimensionner = objetATransformer.GetComponent<BoxCollider>();
-        colliderARedimensionner.size = formeFabriquee.bounds.size;
-        colliderARedimensionner.center = formeFabriquee.bounds.center;
+        colliderARedimensionner.size = modele.Mesh.bounds.size;
+        colliderARedimensionner.center = modele.Mesh.bounds.center;
 
         // Lancer l'animation
         Animator controleurAnimation = GetComponent<Animator>();
