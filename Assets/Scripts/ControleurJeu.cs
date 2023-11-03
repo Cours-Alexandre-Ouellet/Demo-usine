@@ -24,6 +24,19 @@ public class ControleurJeu : MonoBehaviour
     [SerializeField]
     private Fabricateur fabricateur;
 
+    /// <summary>
+    /// Retourne le modèle sélectionné
+    /// </summary>
+    public ModeleObjet ModeleSelectionne => fabricateur != null ? fabricateur.Modele : null;
+
+    [SerializeField]
+    private Peintureur peintureur;
+
+    /// <summary>
+    /// Retourne la couleur sélectionnée
+    /// </summary>
+    public ModeleObjetCouleur CouleurSelectionnee => peintureur != null ? peintureur.ModeleAAppliquer : null;
+
     private void Awake()
     {
         // Pseudo-singleton
@@ -47,5 +60,14 @@ public class ControleurJeu : MonoBehaviour
     public void ChangerModeleProduit(ModeleObjet modeleObjet)
     {
         fabricateur.Modele = modeleObjet;
+    }
+
+    /// <summary>
+    /// Change la couleur à affecter à un modèle lorsqu'il traverse un peintureur
+    /// </summary>
+    /// <param name="couleur">La nouvelle couleur à utiliser.</param>
+    public void ChangerCouleurProduit(ModeleObjetCouleur couleur)
+    {
+        peintureur.ModeleAAppliquer = couleur;
     }
 }

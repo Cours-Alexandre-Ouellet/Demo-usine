@@ -90,8 +90,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e797cc8e43336f42b49b06a4f72049a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icone: {fileID: 0}
+  icone: {fileID: 8739897600690618943}
   nomModele: {fileID: 771091925043779865}
+  onModeleChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3682537849284767308
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8207547, g: 0.28958702, b: 0.28958702, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

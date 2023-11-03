@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f036eb2a407c09e4bb9e9b0478a80ab4, type: 3}
-  m_Name: Modele tour 1
+  m_Script: {fileID: 11500000, guid: 308f5eac1e7f4eb4c9e8fd5da458c021, type: 3}
+  m_Name: Tour noire
   m_EditorClassIdentifier: 
-  mesh: {fileID: 2534964839176971238, guid: ddd8149d8908f47439a62840d7d7e084, type: 3}
-  nom: Patate
+  couleurs:
+  - {fileID: 2100000, guid: 574702c90ce374f4dbb62c3607b1b329, type: 2}
+  nomCouleur: Noir
+  icone: {fileID: 21300000, guid: 47609ebae7fabaa41a04a1450ed92d3e, type: 3}

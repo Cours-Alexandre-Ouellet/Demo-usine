@@ -14,3 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mesh: {fileID: 2534964839176971238, guid: ddd8149d8908f47439a62840d7d7e084, type: 3}
   nom: Tour
+  icone: {fileID: 21300000, guid: 657fa7b22dfe97e499ce0d3a7b52f857, type: 3}
+  couleursPossibles:
+  - {fileID: 11400000, guid: 58226c8b1ec66ed43b58f037c3d655e0, type: 2}
+  - {fileID: 11400000, guid: 428599cba79e9404fbcd039f6ae08a20, type: 2}
