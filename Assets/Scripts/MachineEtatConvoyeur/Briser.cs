@@ -13,25 +13,25 @@ public class Briser : Etat
         convoyeur.EstBrise = true;
         convoyeur.ReparationCompletee = false;      // Passe à l'état Briser
                                                     // (après le cours j'ai réalisé que tout pouvait se gérer avec EstBrise...)
-
+        convoyeur.AfficherZoneBris();
     }
 
     public override Etat Executer(Convoyeur convoyeur)
     {
         // On appuie sur R
-        if(Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             convoyeur.DemarrerCompteurReparation();
         }
-        
+
         // On relâche R
-        if(Input.GetKeyUp(KeyCode.R))
+        if (Input.GetKeyUp(KeyCode.R))
         {
             convoyeur.ArreterReparation();
         }
 
         // Réparation complété = changement état
-        if(convoyeur.ReparationCompletee)
+        if (convoyeur.ReparationCompletee)
         {
             return new Avancer();
         }
@@ -44,6 +44,8 @@ public class Briser : Etat
         base.SortirEtat(convoyeur, etatSuivant);
         convoyeur.CommencerDelaiGrace();
         convoyeur.EstBrise = false;
-        convoyeur.EstArrete=false;
+        convoyeur.EstArrete = false;
+
+        convoyeur.MasquerZoneBris();
     }
 }

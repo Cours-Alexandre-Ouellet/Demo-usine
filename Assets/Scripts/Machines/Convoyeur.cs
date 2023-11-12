@@ -62,15 +62,21 @@ public class Convoyeur : MonoBehaviour
     private float tempsReparation;
 
     /// <summary>
-    /// Image pour afficher la progression de la réparation
-    /// </summary>
-    [SerializeField]
-    private Image progressionReparation;
-
-    /// <summary>
     /// Temps demandé pour fabriquer un objet
     /// </summary>
     public float TempsFabrication { get; set; }
+
+    /// <summary>
+    /// Zones qui représentent un bris
+    /// </summary>
+    [SerializeField]
+    private ZoneBris[] zonesBris;
+
+    /// <summary>
+    /// Zones qui représentent un bris
+    /// </summary>
+    private ZoneBris zoneBrisActive;
+
 
     private void Awake()
     {
@@ -154,7 +160,10 @@ public class Convoyeur : MonoBehaviour
     public void ArreterReparation()
     {
         StopCoroutine(coroutineReparation);
-        progressionReparation.gameObject.SetActive(false);
+        if(zoneBrisActive != null)
+        {
+            zoneBrisActive.SetProgression(0);
+        }
     }
 
     /// <summary>
@@ -165,14 +174,13 @@ public class Convoyeur : MonoBehaviour
     private IEnumerator CompterTempsReparation()
     {
         float tempsEcoule = 0.0f;       // Compteur accumulé par frame
-        progressionReparation.gameObject.SetActive(true);       // Affiche le compteur
 
         // Exécuter la boucle tant que la réparation n'est pas complétée
         while(tempsEcoule < tempsReparation)
         {
             tempsEcoule += Time.deltaTime;
             // Remplit l'image (mode filled)
-            progressionReparation.fillAmount = tempsEcoule / tempsReparation;
+            zoneBrisActive.SetProgression(tempsEcoule / tempsReparation);
             
             // Instruction indiquant à Unity d'attendre le prochain passage de la boucle de jeu 
             // avant de continuer l'exécution de la méthode
@@ -181,7 +189,6 @@ public class Convoyeur : MonoBehaviour
 
         // Opérations exécutées après la complétion de la réparation
         ReparationCompletee = true;
-        progressionReparation.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -212,5 +219,30 @@ public class Convoyeur : MonoBehaviour
         yield return new WaitForSeconds(delaiGrace);
 
         this.probabiliteBris = probabiliteBris;
+    }
+
+    /// <summary>
+    /// Affiche l'une des zones de bris
+    /// </summary>
+    public void AfficherZoneBris()
+    {
+        if(zoneBrisActive == null)
+        {
+            zoneBrisActive = zonesBris[Random.Range(0, zonesBris.Length)];
+            zoneBrisActive.gameObject.SetActive(true);
+            zoneBrisActive.Activer();
+        }
+    }
+
+    /// <summary>
+    /// Masque la zone de bris active
+    /// </summary>
+    public void MasquerZoneBris()
+    {
+        if(zoneBrisActive != null)
+        {
+            zoneBrisActive.gameObject.SetActive(false);
+            zoneBrisActive = null;
+        }
     }
 }
