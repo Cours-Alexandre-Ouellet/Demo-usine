@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 4525900401745210273}
   - component: {fileID: 6818485617007397921}
   - component: {fileID: -1338850263704449392}
+  - component: {fileID: 5090113094884339350}
   m_Layer: 0
   m_Name: Mecanicien
-  m_TagString: Untagged
+  m_TagString: Mecanicien
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,6 +76,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 940adad541ae8b44a8e959da2b1d7e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &5090113094884339350
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4222247050785823621}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &4916987185793535943
 GameObject:
   m_ObjectHideFlags: 0
